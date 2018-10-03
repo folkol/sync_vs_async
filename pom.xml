@@ -7,14 +7,17 @@
   <groupId>com.folkol</groupId>
   <artifactId>content-ws</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
 
+
+  <packaging>pom</packaging>
   <properties>
     <javadoc.opts>-Xdoclint:none</javadoc.opts>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <dropwizard.version>1.3.5</dropwizard.version>
   </properties>
-
   <modules>
     <module>content-ws-common</module>
     <module>content-ws-sync</module>
@@ -52,4 +55,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>
