@@ -54,7 +54,7 @@ public class ContentServiceSync {
     @Path("{id}")
     public void put(@PathParam("id") String id, Content content) {
         JsonArray parts = JsonArray.create();
-        for (Map.Entry<String, Map<String, String>> entry : content.getParts().entrySet()) {
+        for (var entry : content.getParts().entrySet()) {
             JsonObject part = JsonObject.create();
             entry.getValue().forEach(part::put);
             bucket.upsert(JsonDocument.create(id + entry.getKey(), part));

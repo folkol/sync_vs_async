@@ -9,6 +9,11 @@ then splits the Content up in its parts for storage.
 
 A piece of content consists of a number of named parts, each of which is a string:string map.
 
+### Database Schema
+
+A top level document with description and a list of partsIds are stored per content, each present
+part will be stored under contentid+partName.
+
 ## Tech Stack
 
 Dropwizard, backed by a Couchbase Server.
