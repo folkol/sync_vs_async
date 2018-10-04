@@ -18,7 +18,7 @@ import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 import rx.Observable;
 
-@Path("content")
+@Path("async")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ContentServiceAsync {
