@@ -10,6 +10,15 @@ public class Content {
 
     Map<String, Map<String, String>> parts = new HashMap<>();
 
+    public Content(String id, String description, Map<String, Map<String, String>> parts) {
+        setId(id);
+        setDescription(description);
+        setParts(parts);
+    }
+
+    public Content() {
+    }
+
     public String getId() {
         return id;
     }

@@ -3,8 +3,7 @@ package com.folkol;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.CouchbaseCluster;
-import com.folkol.resources.ContentServiceAsync;
-import com.folkol.resources.ContentServiceSync;
+import com.folkol.resources.ContentResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -31,10 +30,11 @@ public class ContentApplication extends Application<ContentConfiguration> {
     public void run(final ContentConfiguration configuration,
                     final Environment environment)
     {
+//        Cluster cluster = CouchbaseCluster.create("192.168.1.120");
         Cluster cluster = CouchbaseCluster.create();
         Bucket bucket = cluster.openBucket(BUCKET, PASSWORD);
-        environment.jersey().register(new ContentServiceSync(bucket));
-        environment.jersey().register(new ContentServiceAsync(bucket));
+        ContentService contentService = new ContentService(bucket);
+        environment.jersey().register(new ContentResource(contentService));
         environment.healthChecks().register("dummy", new DummyHealthCheck());
     }
 
