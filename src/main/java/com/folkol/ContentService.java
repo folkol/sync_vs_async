@@ -29,23 +29,16 @@ public class ContentService {
         JsonObject json = bucket.get(id).content();
         String description = json.getString("description");
         var parts = loadPartsSync(id, json.getArray("parts"));
-
         return new Content(id, description, parts);
     }
 
     public Observable<Content> getContentAsync(String id) {
-        return bucket.async().get(id)
-                     .map(JsonDocument::content)
-                     .flatMap(json -> {
-                         Content content = new Content();
-                         content.setId(id);
-                         content.setDescription(json.getString("description"));
-                         return loadPartsAsync(id, json.getArray("parts"))
-                                    .map(parts -> {
-                                        content.setParts(parts);
-                                        return content;
-                                    });
-                     });
+        return bucket.async().get(id).flatMap(doc -> {
+            JsonObject json = doc.content();
+            String description = json.getString("description");
+            return loadPartsAsync(id, json.getArray("parts"))
+                       .map(parts -> new Content(id, description, parts));
+        });
     }
 
     private JsonArray writeParts(String id, Content content) {
