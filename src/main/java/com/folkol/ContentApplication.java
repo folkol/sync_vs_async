@@ -37,5 +37,4 @@ public class ContentApplication extends Application<ContentConfiguration> {
         environment.jersey().register(new ContentResource(contentService));
         environment.healthChecks().register("dummy", new DummyHealthCheck());
     }
-
 }
