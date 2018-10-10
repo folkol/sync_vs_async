@@ -32,14 +32,14 @@ The web service can create and fetch content. A content consists of a bunch of P
 ## Example usage
 
 ```
-$ curl -XPUT -H'Content-Type: application/json' localhost:8080/sync/walter -d'{"description":"fajshdfasldfhalkjsdhflkahsldfhasfasldfhjahsdfjkasdklfhkaljsdhfahsdfklhsakdfhkajlsdfhlasdf", "parts":{"foo":{"bar":"baz"}, "qux": {"quux": "quuz"}}}'
+$ curl -XPUT -H'Content-Type: application/json' localhost:8080/sync/walter -d'{"description":"Hello, World!", "parts":{"foo":{"bar":"baz"}, "qux": {"quux": "quuz"}}}'
 ```
 
 ```
 $ curl -s localhost:8080/sync/walter | jq
 {
   "id": "walter",
-  "description": "fajshdfasldfhalkjsdhflkahsldfhasfasldfhjahsdfjkasdklfhkaljsdhfahsdfklhsakdfhkajlsdfhlasdf",
+  "description": "Hello, World!",
   "parts": {
     "qux": {
       "quux": "quuz"
