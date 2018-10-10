@@ -1,8 +1,8 @@
 # Sync or Async, that is the question?
 
-Two similar webapps, one async (RxJava) and one sync. What are their performance characteristics like?
+Two similar web service endpoints, one async (RxJava) and one sync. What are their performance characteristics?
 
-The web applications does some meaningless work (serializing back and fourth from json to beans), and
+The web applications performs some meaningless work (serializing back and forth from json to beans), and
 then splits the Content up in its parts for storage.
 
 ## Content
@@ -11,7 +11,7 @@ A piece of content consists of a number of named parts, each of which is a strin
 
 ### Database Schema
 
-A top level document with description and a list of partsIds are stored per content, each present
+A top level document with description and a list of parts names are stored per content, each present
 part will be stored under contentid+partName.
 
 ## Tech Stack
@@ -32,11 +32,11 @@ The web service can create and fetch content. A content consists of a bunch of P
 ## Example usage
 
 ```
-$ curl -XPUT -H'Content-Type: application/json' localhost:8080/content/walter -d'{"description":"fajshdfasldfhalkjsdhflkahsldfhasfasldfhjahsdfjkasdklfhkaljsdhfahsdfklhsakdfhkajlsdfhlasdf", "parts":{"foo":{"bar":"baz"}, "qux": {"quux": "quuz"}}}'
+$ curl -XPUT -H'Content-Type: application/json' localhost:8080/sync/walter -d'{"description":"fajshdfasldfhalkjsdhflkahsldfhasfasldfhjahsdfjkasdklfhkaljsdhfahsdfklhsakdfhkajlsdfhlasdf", "parts":{"foo":{"bar":"baz"}, "qux": {"quux": "quuz"}}}'
 ```
 
 ```
-$ curl -s localhost:8080/content/walter | jq
+$ curl -s localhost:8080/sync/walter | jq
 {
   "id": "walter",
   "description": "fajshdfasldfhalkjsdhflkahsldfhasfasldfhjahsdfjkasdklfhkaljsdhfahsdfklhsakdfhkajlsdfhlasdf",
