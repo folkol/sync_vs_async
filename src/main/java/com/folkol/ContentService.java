@@ -63,7 +63,7 @@ public class ContentService {
     private Observable<Map<String, Map<String, Object>>> loadPartsAsync(String id, JsonArray names) {
         return Observable.from(names)
                          .cast(String.class)
-                         .flatMap(key -> bucket.async().get(key))
+                         .flatMap(key -> bucket.async().get(id + key))
                          .toMap(doc -> doc.id().substring(id.length()))
                          .map(docs -> {
                              Map<String, Map<String, Object>> parts = new HashMap<>();
