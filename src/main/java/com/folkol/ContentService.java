@@ -86,15 +86,10 @@ public class ContentService {
 
     private JsonArray writeParts(String id, Content content) {
         JsonArray parts = JsonArray.create();
-        for (var entry : content.getParts().entrySet()) {
-            String partName = entry.getKey();
-            Map<String, String> part = entry.getValue();
-
-            JsonObject json = JsonObject.create();
-            part.forEach(json::put);
-            bucket.upsert(JsonDocument.create(id + partName, json));
-            parts.add(id + partName);
-        }
+        content.getParts().forEach((name, part) -> {
+            bucket.upsert(JsonDocument.create(id + name, JsonObject.from(part)));
+            parts.add(id + name);
+        });
         return parts;
     }
 }
