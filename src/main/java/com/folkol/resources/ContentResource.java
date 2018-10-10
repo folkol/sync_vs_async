@@ -22,6 +22,12 @@ public class ContentResource {
         this.contentService = contentService;
     }
 
+    @PUT
+    @Path("sync/{id}")
+    public void put(@PathParam("id") String id, Content content) {
+        contentService.updateContent(id, content);
+    }
+
     @GET
     @Path("sync/{id}")
     public Content get(@PathParam("id") String id) {
@@ -32,11 +38,5 @@ public class ContentResource {
     @Path("async/{id}")
     public void get(@Suspended AsyncResponse ar, @PathParam("id") String id) {
         contentService.getContentAsync(id).subscribe(ar::resume, ar::resume);
-    }
-
-    @PUT
-    @Path("sync/{id}")
-    public void put(@PathParam("id") String id, Content content) {
-        contentService.updateContent(id, content);
     }
 }

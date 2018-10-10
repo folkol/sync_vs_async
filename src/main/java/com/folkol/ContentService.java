@@ -48,22 +48,26 @@ public class ContentService {
                      });
     }
 
-    private Map<String, Map<String, String>> loadPartsSync(String id, JsonArray json) {
-        Map<String, Map<String, String>> parts = new HashMap<>();
-        for (int i = 0; i < json.size(); i++) {
-            Map<String, String> part = new HashMap<>();
-            String key = json.getString(i);
-            JsonObject partJson = bucket.get(key).content();
-            for (String name : partJson.getNames()) {
-                part.put(name, partJson.getString(name));
-            }
-            String partName = key.substring(id.length());
-            parts.put(partName, part);
-        }
+    private JsonArray writeParts(String id, Content content) {
+        JsonArray parts = JsonArray.create();
+        content.getParts().forEach((name, part) -> {
+            bucket.upsert(JsonDocument.create(id + name, JsonObject.from(part)));
+            parts.add(name);
+        });
         return parts;
     }
 
-    private Observable<Map<String, Map<String, String>>> loadPartsAsync(String id, JsonArray json) {
+    private Map<String, Map<String, Object>> loadPartsSync(String id, JsonArray names) {
+        Map<String, Map<String, Object>> parts = new HashMap<>();
+        names.forEach(e -> {
+            String name = (String) e;
+            JsonObject json = bucket.get(id + name).content();
+            parts.put(name, json.toMap());
+        });
+        return parts;
+    }
+
+    private Observable<Map<String, Map<String, Object>>> loadPartsAsync(String id, JsonArray json) {
         return Observable.from(json)
                          .flatMap(e -> {
                              String key = (String) e;
@@ -71,9 +75,9 @@ public class ContentService {
                          })
                          .toMap(doc -> doc.id().substring(id.length()))
                          .map(docs -> {
-                             Map<String, Map<String, String>> parts = new HashMap<>();
+                             Map<String, Map<String, Object>> parts = new HashMap<>();
                              docs.forEach((s, jsonDocument) -> {
-                                 Map<String, String> part = new HashMap<>();
+                                 Map<String, Object> part = new HashMap<>();
                                  JsonObject partJson = jsonDocument.content();
                                  for (String name : partJson.getNames()) {
                                      part.put(name, partJson.getString(name));
@@ -82,14 +86,5 @@ public class ContentService {
                              });
                              return parts;
                          });
-    }
-
-    private JsonArray writeParts(String id, Content content) {
-        JsonArray parts = JsonArray.create();
-        content.getParts().forEach((name, part) -> {
-            bucket.upsert(JsonDocument.create(id + name, JsonObject.from(part)));
-            parts.add(id + name);
-        });
-        return parts;
     }
 }

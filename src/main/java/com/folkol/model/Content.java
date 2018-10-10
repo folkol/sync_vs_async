@@ -8,9 +8,9 @@ public class Content {
     String id;
     String description;
 
-    Map<String, Map<String, String>> parts = new HashMap<>();
+    Map<String, Map<String, Object>> parts = new HashMap<>();
 
-    public Content(String id, String description, Map<String, Map<String, String>> parts) {
+    public Content(String id, String description, Map<String, Map<String, Object>> parts) {
         setId(id);
         setDescription(description);
         setParts(parts);
@@ -35,11 +35,11 @@ public class Content {
         this.description = description;
     }
 
-    public Map<String, Map<String, String>> getParts() {
+    public Map<String, Map<String, Object>> getParts() {
         return parts;
     }
 
-    public void setParts(Map<String, Map<String, String>> parts) {
+    public void setParts(Map<String, Map<String, Object>> parts) {
         this.parts = parts;
     }
 }
