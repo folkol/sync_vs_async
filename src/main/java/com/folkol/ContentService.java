@@ -65,12 +65,14 @@ public class ContentService {
                          .cast(String.class)
                          .flatMap(name -> bucket.async().get(id + name))
                          .toMap(doc -> doc.id().substring(id.length()))
-                         .map(docs -> {
-                             Map<String, Map<String, Object>> parts = new HashMap<>();
-                             docs.forEach((name, doc) -> {
-                                 parts.put(name, doc.content().toMap());
-                             });
-                             return parts;
-                         });
+                         .map(this::toParts);
+    }
+
+    private Map<String, Map<String, Object>> toParts(Map<String, JsonDocument> documents) {
+        Map<String, Map<String, Object>> parts = new HashMap<>();
+        documents.forEach((name, doc) -> {
+            parts.put(name, doc.content().toMap());
+        });
+        return parts;
     }
 }
