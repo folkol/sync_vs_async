@@ -34,8 +34,7 @@ public class ContentApplication extends Application<ContentConfiguration> {
         Cluster cluster = CouchbaseCluster.create();
         Bucket bucket = cluster.openBucket(BUCKET, PASSWORD);
         ContentService contentService = new ContentService(bucket);
-        VaryingContentService varyingContentService = new VaryingContentService(contentService);
-        environment.jersey().register(new ContentResource(varyingContentService));
+        environment.jersey().register(new ContentResource(contentService));
         environment.healthChecks().register("dummy", new DummyHealthCheck());
     }
 }
