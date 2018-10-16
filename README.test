@@ -1,0 +1,46 @@
+Compute optimized
+c5.4xlarge
+16
+32
+EBS only
+Yes
+Up to 10 Gigabit
+
+
+https://docs.couchbase.com/server/4.6/install/deployment-aws.html
+ rpm -i couchbase-server-community-5.0.1-centos7.x86_64.rpm
+ https://www.thatsgeeky.com/2011/11/installing-apachebench-without-apache-on-amazons-linux/
+
+ ulimit -n 4096
+
+
+
+ c5.9xlarge
+
+
+
+ couchbase:
+
+ download https://packages.couchbase.com/releases/5.0.1/couchbase-server-community-5.0.1-centos7.x86_64.rpm
+ sudo rpm -i couchbase-server-community-5.0.1-centos7.x86_64.rpm
+ ./bin/couchbase-server \-- -noinput -detached
+ create cluster
+ create user
+
+
+service:
+
+scp -i ~/.ssh/macbooken.pem target/content-ws-1.0-SNAPSHOT.jar server.yaml ec2-user@ec2-18-184-221-234.eu-central-1.compute.amazonaws.com:
+ wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.rpm
+sudo rpm -i jdk-11.0.1_linux-x64_bin.rpm
+edit service.yaml
+java -jar content-ws-1.0-SNAPSHOT.jar server server.yaml
+
+
+client:
+
+scp -i ~/.ssh/macbooken.pem *json ec2-user@ec2-18-197-226-8.eu-central-1.compute.amazonaws.com:
+scp -i ~/.ssh/macbooken.pem test.sh ec2-user@ec2-18-197-226-8.eu-central-1.compute.amazonaws.com:
+sudo yum install httpd-tools
+ulimit -n 4096
+./test.sh 172.31.45.91 | tee test.log
