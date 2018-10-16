@@ -1,0 +1,15 @@
+{
+   "description": "Hello, world!",
+   "parts": {
+       "foo0": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo1": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo2": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo3": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo4": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo5": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo6": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo7": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo8": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"},
+       "foo9": {"bar0": "baz0", "bar1": "baz1", "bar2": "baz2", "bar3": "baz3", "bar4": "baz4", "bar5": "baz5", "bar6": "baz6", "bar7": "baz7", "bar8": "baz8", "bar9": "baz9"}
+   }
+}
