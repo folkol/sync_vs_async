@@ -25,7 +25,7 @@ mkdir results
 echo "Testing sync tiny content without parts"
 for threads in {0..10}; do
     n=$((2 ** $threads))
-    ab -k -n 100000 -c $n http://$HOST:8080/sync/tiny_few >results/tiny_few_$n.json
+    ab -k -n 100000 -c $n http://$HOST:8080/sync/tiny_few >results/tiny_few_sync_$n.json
 done
 echo "Waiting..."
 sleep 20
@@ -34,7 +34,7 @@ sleep 20
 echo "Testing sync tiny content with parts"
 for threads in {0..9}; do
     n=$((2 ** $threads))
-    ab -k -n 100000 -c $n http://$HOST:8080/sync/tiny_many >results/tiny_many_$n.json
+    ab -k -n 100000 -c $n http://$HOST:8080/sync/tiny_many >results/tiny_many_sync_$n.json
 done
 echo "Waiting..."
 sleep 20
@@ -52,7 +52,7 @@ sleep 20
 echo "Testing async tiny content without parts"
 for threads in {0..10}; do
     n=$((2 ** $threads))
-    ab -k -n 100000 -c $n http://$HOST:8080/async/tiny_few >results/tiny_few_$n.json
+    ab -k -n 100000 -c $n http://$HOST:8080/async/tiny_few >results/tiny_few_async_$n.json
 done
 echo "Waiting..."
 sleep 20
@@ -61,7 +61,7 @@ sleep 20
 echo "Testing async tiny content with parts"
 for threads in {0..9}; do
     n=$((2 ** $threads))
-    ab -k -n 100000 -c $n http://$HOST:8080/async/tiny_many >results/tiny_many_$n.json
+    ab -k -n 100000 -c $n http://$HOST:8080/async/tiny_many >results/tiny_many_async_$n.json
 done
 #echo "Waiting..."
 #sleep 20
