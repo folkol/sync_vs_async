@@ -30,8 +30,9 @@ public class ContentApplication extends Application<ContentConfiguration> {
     public void run(final ContentConfiguration configuration,
                     final Environment environment)
     {
-//        Cluster cluster = CouchbaseCluster.create("192.168.1.120");
-        Cluster cluster = CouchbaseCluster.create();
+        String host = configuration.getHost();
+        System.out.println("Couchbase at " + host);
+        Cluster cluster = CouchbaseCluster.create(host);
         Bucket bucket = cluster.openBucket(BUCKET, PASSWORD);
         ContentService contentService = new ContentService(bucket);
         environment.jersey().register(new ContentResource(contentService));
