@@ -1,31 +1,24 @@
-Compute optimized
-c5.4xlarge
-16
-32
-EBS only
-Yes
-Up to 10 Gigabit
+Client -> Service -> Couchbase on their own c5.9xlarge machines.
 
 
 https://docs.couchbase.com/server/4.6/install/deployment-aws.html
- rpm -i couchbase-server-community-5.0.1-centos7.x86_64.rpm
- https://www.thatsgeeky.com/2011/11/installing-apachebench-without-apache-on-amazons-linux/
+rpm -i couchbase-server-community-5.0.1-centos7.x86_64.rpm
+https://www.thatsgeeky.com/2011/11/installing-apachebench-without-apache-on-amazons-linux/
 
- ulimit -n 4096
-
-
-
- c5.9xlarge
+ulimit -n 4096
 
 
 
- couchbase:
 
- download https://packages.couchbase.com/releases/5.0.1/couchbase-server-community-5.0.1-centos7.x86_64.rpm
- sudo rpm -i couchbase-server-community-5.0.1-centos7.x86_64.rpm
- ./bin/couchbase-server \-- -noinput -detached
- create cluster
- create user
+
+
+couchbase:
+
+download https://packages.couchbase.com/releases/5.0.1/couchbase-server-community-5.0.1-centos7.x86_64.rpm
+sudo rpm -i couchbase-server-community-5.0.1-centos7.x86_64.rpm
+./bin/couchbase-server \-- -noinput -detached
+create cluster
+create user
 
 
 service:
@@ -44,3 +37,4 @@ scp -i ~/.ssh/macbooken.pem test.sh ec2-user@ec2-18-197-226-8.eu-central-1.compu
 sudo yum install httpd-tools
 ulimit -n 4096
 ./test.sh 172.31.45.91 | tee test.log
+
