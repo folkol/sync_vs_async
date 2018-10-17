@@ -50,3 +50,14 @@ $ curl -s localhost:8080/sync/walter | jq
   }
 }
 ```
+
+### Analysis
+
+```
+$ tar xf results.tar
+$ ./analyze.sh
+```
+
+![](99.png)
+
+![](rps.png)
