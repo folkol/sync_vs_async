@@ -58,6 +58,8 @@ $ tar xf results.tar
 $ ./analyze.sh
 ```
 
+"few" means without loading parts from other documents, "many" means loading parts from their own documents.
+
 ![](99.png)
 
 ![](rps.png)
