@@ -53,6 +53,8 @@ $ curl -s localhost:8080/sync/walter | jq
 
 ### Analysis
 
+ab, service and couchbase on their own c5.9xlarge machines
+
 ```
 $ tar xf results.tar
 $ ./analyze.sh
@@ -63,3 +65,6 @@ $ ./analyze.sh
 ![](99.png)
 
 ![](rps.png)
+
+
+CPU load was higher on the sync runs than on the async runs, but throughput was not lower. Probably bottlenecked by something else (network?).
